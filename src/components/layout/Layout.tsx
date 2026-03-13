@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
+import AssistantDemo from '../ui/AssistantDemo'
 
 export default function Layout() {
   return (
@@ -8,6 +9,7 @@ export default function Layout() {
       <main style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden' }}>
         <Outlet />
       </main>
+      <AssistantDemo />
     </div>
   )
 }
