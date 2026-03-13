@@ -18,22 +18,21 @@ interface DemoIntent {
 }
 
 const quickPrompts = [
-  'Show today appointments',
-  'Open billing and prepare invoice summary',
-  'Find Priya Sharma and show profile',
-  'Take me to consent forms',
+  'Today appointments',
+  'Open billing',
+  'Find Priya Sharma',
+  'Consent forms',
 ]
 
 const baseIntent: DemoIntent = {
   route: '/dashboard',
   title: 'Reviewing the workspace',
   steps: [
-    'Scanning the current CRM screen',
-    'Figuring out the best place to help from',
-    'Preparing a demo action flow',
+    'Scanning the screen',
+    'Understanding the request',
+    'Preparing the next step',
   ],
-  response:
-    'I reviewed the current workspace and I am ready to help. Try things like "show today appointments", "open billing", or "find a patient".',
+  response: 'I am ready. Try appointments, billing, patients, or forms.',
 }
 
 function inferIntent(prompt: string): DemoIntent {
@@ -45,11 +44,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening appointments',
       steps: [
         'Reading the visible schedule',
-        'Highlighting the appointment workflow',
-        'Opening the weekly appointment board',
+        'Focusing the schedule',
+        'Opening appointments',
       ],
-      response:
-        'I opened the appointments view and focused on the scheduling workflow. In a real version I would also filter or reschedule directly from here.',
+      response: 'Appointments are open.',
     }
   }
 
@@ -59,11 +57,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Locating patient records',
       steps: [
         'Searching the patient list',
-        'Matching the most likely patient record',
-        'Bringing the patient workspace into view',
+        'Matching the record',
+        'Opening patients',
       ],
-      response:
-        'I moved to the patient area so it looks like I found the record for you. For the demo, I stop at navigation instead of editing patient data.',
+      response: 'Patients are open.',
     }
   }
 
@@ -73,11 +70,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening billing',
       steps: [
         'Inspecting payments and invoice context',
-        'Preparing a billing-focused view',
-        'Switching to the billing workspace',
+        'Preparing billing',
+        'Opening billing',
       ],
-      response:
-        'Billing is open. For the demo feel, I am pretending I prepared the invoice context and payment summary for you.',
+      response: 'Billing is open.',
     }
   }
 
@@ -87,11 +83,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Setting up a campaign flow',
       steps: [
         'Reviewing lead and outreach context',
-        'Choosing the campaign workspace',
-        'Opening the marketing controls',
+        'Preparing outreach',
+        'Opening campaigns',
       ],
-      response:
-        'I opened the campaigns area and staged a marketing-style workflow. In a real assistant this could prefill audience filters and message drafts.',
+      response: 'Campaigns are open.',
     }
   }
 
@@ -101,11 +96,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Preparing forms and consents',
       steps: [
         'Reading the active form requirements',
-        'Checking signature and consent context',
-        'Opening the forms workspace',
+        'Preparing consents',
+        'Opening forms',
       ],
-      response:
-        'I opened forms and consents and staged the handoff there. This demo is set up to feel like I am ready to collect signatures next.',
+      response: 'Forms and consents are open.',
     }
   }
 
@@ -115,11 +109,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening prescriptions',
       steps: [
         'Reviewing medication-related intent',
-        'Switching to the prescription module',
-        'Preparing the medication workflow',
+        'Preparing prescriptions',
+        'Opening prescriptions',
       ],
-      response:
-        'I opened the prescriptions page and prepared the medication workflow. For the demo, I am not generating a real prescription.',
+      response: 'Prescriptions are open.',
     }
   }
 
@@ -129,11 +122,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening settings',
       steps: [
         'Checking clinic configuration intent',
-        'Finding the settings controls',
-        'Opening the configuration screen',
+        'Preparing settings',
+        'Opening settings',
       ],
-      response:
-        'I opened settings and staged the configuration area for you. This is demo-safe and does not change any stored setup.',
+      response: 'Settings are open.',
     }
   }
 
@@ -143,11 +135,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening WhatsApp templates',
       steps: [
         'Understanding the message-template request',
-        'Finding the template workspace',
-        'Opening WhatsApp template controls',
+        'Preparing templates',
+        'Opening WhatsApp templates',
       ],
-      response:
-        'I opened the WhatsApp templates area so it feels like I am ready to draft or select a message template.',
+      response: 'WhatsApp templates are open.',
     }
   }
 
@@ -157,11 +148,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening channels',
       steps: [
         'Reviewing communication channel intent',
-        'Finding the channel control center',
-        'Opening the channels workspace',
+        'Preparing channels',
+        'Opening channels',
       ],
-      response:
-        'I opened channels and staged the communication controls. In a real build this could connect live inboxes and channel status.',
+      response: 'Channels are open.',
     }
   }
 
@@ -171,11 +161,10 @@ function inferIntent(prompt: string): DemoIntent {
       title: 'Opening AI agents',
       steps: [
         'Reviewing assistant-related intent',
-        'Finding the AI workflow section',
-        'Opening the AI agents screen',
+        'Preparing AI tools',
+        'Opening AI agents',
       ],
-      response:
-        'I opened the AI agents area and staged the assistant workflow. Nice meta moment for the demo.',
+      response: 'AI agents are open.',
     }
   }
 
@@ -187,12 +176,12 @@ function buildMessages(prompt: string, intent: DemoIntent) {
     {
       id: `system-${Date.now()}`,
       role: 'system' as const,
-      text: `Demo mode: ${intent.title}`,
+      text: intent.title,
     },
     {
       id: `assistant-${Date.now() + 1}`,
       role: 'assistant' as const,
-      text: `I understood: "${prompt}". I am taking screen context and handling it for you.`,
+      text: `Working on "${prompt}".`,
     },
   ]
 }
@@ -208,8 +197,7 @@ export default function AssistantDemo() {
     {
       id: 'assistant-welcome',
       role: 'assistant',
-      text:
-        'Ask me to do something in the CRM and I will fake-handle it for the demo. I can open pages, act like I understood the screen, and narrate what I am doing.',
+      text: 'What do you want to do?',
     },
   ])
   const [screenPulse, setScreenPulse] = useState(false)
@@ -316,7 +304,7 @@ export default function AssistantDemo() {
         <div className="assistant-screen-glow__beam" />
         <div className="assistant-screen-glow__badge">
           <LoaderCircle size={16} className={screenPulse ? 'assistant-spin' : ''} />
-          <span>Assistant is reading the screen</span>
+          <span>Reading screen</span>
         </div>
       </div>
 
@@ -325,8 +313,8 @@ export default function AssistantDemo() {
       <aside className={`assistant-panel ${isOpen ? 'is-open' : ''}`}>
         <div className="assistant-panel__header">
           <div>
-            <p className="assistant-panel__eyebrow">Demo Assistant</p>
-            <h2>Ask it to do something</h2>
+            <p className="assistant-panel__eyebrow">Assistant</p>
+            <h2>How can I help?</h2>
           </div>
           <button type="button" className="assistant-icon-button" onClick={closeAssistant} aria-label="Close assistant">
             <X size={18} />
@@ -336,11 +324,8 @@ export default function AssistantDemo() {
         <div className="assistant-panel__subheader">
           <div className="assistant-status-pill">
             <Bot size={14} />
-            <span>{isProcessing ? 'Taking screen control' : 'Ready for demo commands'}</span>
+            <span>{isProcessing ? 'Working' : 'Ready'}</span>
           </div>
-          <p>
-            This is intentionally fake automation. It can open relevant pages, narrate actions, and sell the demo experience.
-          </p>
         </div>
 
         <div ref={bodyRef} className="assistant-panel__messages">
@@ -380,11 +365,11 @@ export default function AssistantDemo() {
           <textarea
             value={input}
             onChange={event => setInput(event.target.value)}
-            placeholder="Type a request like: open billing, show patients, take me to appointments..."
+            placeholder="Type a request..."
             rows={3}
           />
           <button type="submit" disabled={!input.trim() || isProcessing}>
-            <span>{isProcessing ? 'Working...' : 'Send'}</span>
+            <span>{isProcessing ? 'Working' : 'Send'}</span>
             <ChevronRight size={16} />
           </button>
         </form>
