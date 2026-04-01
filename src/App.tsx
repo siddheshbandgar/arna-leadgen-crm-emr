@@ -10,6 +10,7 @@ import Prescriptions from './pages/Prescriptions'
 import Billing from './pages/Billing'
 import Campaigns from './pages/Campaigns'
 import AIAgents from './pages/AIAgents'
+import AICalls from './pages/AICalls'
 import Channels from './pages/Channels'
 import WATemplates from './pages/WATemplates'
 import Settings from './pages/Settings'
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="billing" element={<Billing />} />
           <Route path="campaigns" element={<Campaigns />} />
           <Route path="ai-agents" element={<AIAgents />} />
+          <Route path="ai-calls" element={<AICalls />} />
           <Route path="channels" element={<Channels />} />
           <Route path="wa-templates" element={<WATemplates />} />
           <Route path="settings" element={<Settings />} />

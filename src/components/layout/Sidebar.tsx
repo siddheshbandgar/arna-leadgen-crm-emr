@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, Users, UserSquare2, Calendar, FileText,
-  Pill, CreditCard, Megaphone, Bot, Radio, MessageSquareCode, Settings, LogOut
+  Pill, CreditCard, Megaphone, Bot, Radio, MessageSquareCode, Settings, LogOut, PhoneCall
 } from 'lucide-react'
 
 const navItems = [
@@ -14,6 +14,7 @@ const navItems = [
   { to: '/billing', icon: CreditCard, label: 'Billing' },
   { to: '/campaigns', icon: Megaphone, label: 'Campaigns' },
   { to: '/ai-agents', icon: Bot, label: 'AI Agents' },
+  { to: '/ai-calls', icon: PhoneCall, label: 'AI Voice Calls' },
   { to: '/channels', icon: Radio, label: 'Channels' },
   { to: '/wa-templates', icon: MessageSquareCode, label: 'WA Templates' },
   { to: '/settings', icon: Settings, label: 'Settings' },
