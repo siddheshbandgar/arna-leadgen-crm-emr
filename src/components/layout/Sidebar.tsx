@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard, Users, UserSquare2, Calendar, FileText,
-  Pill, CreditCard, Megaphone, Bot, Radio, MessageSquareCode, Settings, LogOut, PhoneCall
+  Pill, CreditCard, Megaphone, Bot, Radio, MessageSquareCode,
+  Settings, LogOut, PhoneCall, X
 } from 'lucide-react'
 
 const navItems = [
@@ -20,10 +21,26 @@ const navItems = [
   { to: '/settings', icon: Settings, label: 'Settings' },
 ]
 
-export default function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
-    <div style={{ width: '240px', minWidth: '240px', backgroundColor: '#1A1A1A', color: 'white', display: 'flex', flexDirection: 'column', height: '100vh', position: 'sticky', top: 0 }}>
-      <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid #2A2A2A' }}>
+    <div
+      className={`app-sidebar${isOpen ? ' is-open' : ''}`}
+      style={{
+        width: '240px',
+        minWidth: '240px',
+        backgroundColor: '#1A1A1A',
+        color: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+      }}
+    >
+      <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid #2A2A2A', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ width: '32px', height: '32px', background: 'white', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ fontSize: '16px', fontWeight: '700', color: '#1A1A1A' }}>A</span>
@@ -33,6 +50,15 @@ export default function Sidebar() {
             <div style={{ fontSize: '11px', color: '#9CA3AF' }}>Skin & Hair</div>
           </div>
         </div>
+        {/* Close button — visible only on mobile via CSS */}
+        <button
+          className="sidebar-close-btn"
+          onClick={onClose}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9CA3AF', alignItems: 'center', padding: '4px' }}
+          aria-label="Close menu"
+        >
+          <X size={18} />
+        </button>
       </div>
 
       <nav style={{ flex: 1, padding: '12px 8px', overflowY: 'auto' }}>
@@ -40,6 +66,7 @@ export default function Sidebar() {
           <NavLink
             key={to}
             to={to}
+            onClick={onClose}
             style={({ isActive }) => ({
               display: 'flex',
               alignItems: 'center',

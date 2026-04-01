@@ -418,7 +418,7 @@ export default function AICalls() {
   }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       {/* header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
         <div>
@@ -442,14 +442,14 @@ export default function AICalls() {
       </div>
 
       {/* stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '12px', marginBottom: '24px' }}>
+      <div className="rg-4" style={{ marginBottom: '24px' }}>
         <StatCard label="Calls Today" value={String(callRecords.length)} sub="+3 vs yesterday" icon={Phone} color="#3B82F6" />
         <StatCard label="Completed" value={String(completedToday)} sub={`${answeredPct}% answer rate`} icon={CheckCircle2} color="#10B981" />
         <StatCard label="Avg Duration" value={fmtDuration(avgDuration)} sub="Per answered call" icon={Clock} color="#8B5CF6" />
         <StatCard label="Booked via Call" value="3" sub="Appointments today" icon={TrendingUp} color="#F59E0B" />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '24px' }}>
+      <div className="rg-2" style={{ marginBottom: '24px' }}>
         {/* campaigns */}
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>

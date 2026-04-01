@@ -40,20 +40,20 @@ const StatCard = ({ title, value, subtitle, icon }: { title: string; value: stri
 
 export default function Dashboard() {
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1400px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1400px' }}>
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Dashboard</h1>
         <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6B7280' }}>Welcome back, Dr. Mounika. Here's what's happening today.</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '16px', marginBottom: '24px' }}>
+      <div className="rg-4" style={{ marginBottom: '24px' }}>
         <StatCard title="Today's Appointments" value="8" subtitle="5 confirmed, 3 pending" icon="📅" />
         <StatCard title="New Leads This Week" value="23" subtitle="+12% from last week" icon="📋" />
         <StatCard title="Active Patients" value="342" subtitle="18 new this month" icon="👥" />
         <StatCard title="Revenue This Month" value="₹2,45,000" subtitle="₹38k from medicines" icon="💰" />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
+      <div className="rg-2" style={{ marginBottom: '24px' }}>
         <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
           <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Appointments This Week</h3>
           <ResponsiveContainer width="100%" height={200}>
@@ -80,7 +80,7 @@ export default function Dashboard() {
 
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
         <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Today's Schedule</h3>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className="tbl-wrap"><table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB' }}>
               {['Time', 'Patient', 'Treatment', 'Status'].map(h => (
@@ -100,7 +100,7 @@ export default function Dashboard() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   )

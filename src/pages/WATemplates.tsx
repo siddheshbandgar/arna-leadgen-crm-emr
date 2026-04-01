@@ -67,7 +67,7 @@ export default function WATemplates() {
   }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>WhatsApp Templates</h1>
@@ -79,7 +79,7 @@ export default function WATemplates() {
       </div>
 
       {/* Stats */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '24px' }}>
+      <div className="rg-4" style={{ marginBottom: '24px' }}>
         <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '16px' }}>
           <p style={{ margin: '0 0 4px', fontSize: '12px', color: '#6B7280' }}>Total Templates</p>
           <p style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>{templates.length}</p>
@@ -99,8 +99,8 @@ export default function WATemplates() {
       </div>
 
       {/* Template list */}
-      <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '560px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
               {['Template Name', 'Category', 'Status', 'Language', 'Usage', 'Last Used', 'Actions'].map(h => (

@@ -50,14 +50,14 @@ export default function Channels() {
   }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Channels</h1>
         <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6B7280' }}>Manage communication channels and integrations</p>
       </div>
 
       {/* Summary */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '24px' }}>
+      <div className="rg-3" style={{ marginBottom: '24px' }}>
         <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
           <p style={{ margin: '0 0 4px', fontSize: '12px', color: '#6B7280', fontWeight: '500' }}>Total Messages This Month</p>
           <p style={{ margin: 0, fontSize: '28px', fontWeight: '700', color: '#111' }}>1,669</p>

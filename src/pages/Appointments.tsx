@@ -32,7 +32,9 @@ function getWeekDates(baseDate: Date): { date: string; label: string; dayName: s
 }
 
 export default function Appointments() {
-  const [view, setView] = useState<'calendar' | 'list'>('calendar')
+  const [view, setView] = useState<'calendar' | 'list'>(() =>
+    window.innerWidth < 768 ? 'list' : 'calendar'
+  )
   const [baseDate, setBaseDate] = useState(new Date(2026, 2, 13))
   const [selected, setSelected] = useState<Appointment | null>(null)
 
@@ -47,8 +49,8 @@ export default function Appointments() {
   const todayIso = '2026-03-13'
 
   const renderCalendar = () => (
-    <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
         <thead>
           <tr>
             <th style={{ width: '80px', padding: '12px 8px', textAlign: 'center', fontSize: '12px', fontWeight: '600', color: '#6B7280', borderBottom: '1px solid #E5E7EB', borderRight: '1px solid #E5E7EB', background: '#F9FAFB' }}>Time</th>
@@ -97,8 +99,8 @@ export default function Appointments() {
   )
 
   const renderList = () => (
-    <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+    <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+      <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '500px' }}>
         <thead>
           <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
             {['Date', 'Time', 'Patient', 'Treatment', 'Doctor', 'Status'].map(h => (
@@ -142,7 +144,7 @@ export default function Appointments() {
   )
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1400px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1400px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Appointments</h1>

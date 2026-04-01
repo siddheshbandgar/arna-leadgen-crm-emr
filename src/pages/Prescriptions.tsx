@@ -45,7 +45,7 @@ export default function Prescriptions() {
   const inputStyle: React.CSSProperties = { width: '100%', padding: '8px 10px', border: '1px solid #E5E7EB', borderRadius: '6px', fontSize: '13px', outline: 'none', fontFamily: 'inherit' }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Prescriptions</h1>
@@ -61,8 +61,8 @@ export default function Prescriptions() {
         <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search prescriptions..." style={{ width: '100%', padding: '8px 10px 8px 32px', border: '1px solid #E5E7EB', borderRadius: '7px', fontSize: '14px', outline: 'none' }} />
       </div>
 
-      <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '560px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
               {['Rx ID', 'Date', 'Patient', 'Doctor', 'Medicines', 'Sent via WA', 'Actions'].map(h => (

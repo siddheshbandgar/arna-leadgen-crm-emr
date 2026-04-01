@@ -67,7 +67,7 @@ export default function Campaigns() {
   const selectStyle: React.CSSProperties = { padding: '8px 12px', border: '1px solid #E5E7EB', borderRadius: '7px', fontSize: '13px', outline: 'none', fontFamily: 'inherit', background: 'white' }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Campaigns</h1>
         <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6B7280' }}>Create and manage WhatsApp marketing campaigns</p>
@@ -143,7 +143,7 @@ export default function Campaigns() {
         <div style={{ padding: '16px 20px', borderBottom: '1px solid #E5E7EB' }}>
           <h3 style={{ margin: 0, fontSize: '15px', fontWeight: '600', color: '#111' }}>Campaign History</h3>
         </div>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className="tbl-wrap"><table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '560px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
               {['Campaign', 'Segment', 'Sent', 'Delivered', 'Read', 'Date', 'Status'].map(h => (
@@ -174,7 +174,7 @@ export default function Campaigns() {
               )
             })}
           </tbody>
-        </table>
+        </table></div>
       </div>
     </div>
   )

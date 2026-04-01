@@ -28,7 +28,7 @@ export default function Patients() {
   })
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1400px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1400px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Patients</h1>
@@ -63,7 +63,7 @@ export default function Patients() {
       </div>
 
       {/* Table */}
-      <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
+      <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>

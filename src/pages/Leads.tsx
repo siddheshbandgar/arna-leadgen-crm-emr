@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Search, MessageCircle, Calendar, UserPlus } from 'lucide-react'
+import { Search, MessageCircle, Calendar, UserPlus, X } from 'lucide-react'
 import { leads } from '../data/leads'
 import type { Lead } from '../data/leads'
 import { useToast } from '../components/ui/Toast'
+import { useIsMobile } from '../hooks/useIsMobile'
 
 const statusColors: Record<string, { bg: string; text: string }> = {
   'New': { bg: '#DBEAFE', text: '#1D4ED8' },
@@ -17,6 +18,7 @@ export default function Leads() {
   const [selected, setSelected] = useState<Lead | null>(null)
   const [search, setSearch] = useState('')
   const { showToast } = useToast()
+  const isMobile = useIsMobile()
 
   const filtered = leads.filter(l =>
     l.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -25,8 +27,8 @@ export default function Leads() {
   )
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
-      <div style={{ flex: 1, padding: '28px 32px', overflowY: 'auto' }}>
+    <div style={{ display: 'flex', height: isMobile ? 'auto' : '100vh', overflow: isMobile ? 'visible' : 'hidden' }}>
+      <div style={{ flex: 1, overflowY: 'auto' }} className="page-wrap">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
           <div>
             <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Leads</h1>
@@ -45,7 +47,7 @@ export default function Leads() {
           />
         </div>
 
-        <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
+        <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
@@ -82,10 +84,26 @@ export default function Leads() {
       </div>
 
       {selected && (
-        <div style={{ width: '320px', background: 'white', borderLeft: '1px solid #E5E7EB', padding: '24px', overflowY: 'auto', flexShrink: 0 }}>
+        <>
+          {/* Mobile backdrop */}
+          {isMobile && (
+            <div
+              onClick={() => setSelected(null)}
+              style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 98 }}
+            />
+          )}
+        <div style={isMobile ? {
+          position: 'fixed', bottom: 0, left: 0, right: 0,
+          background: 'white', borderRadius: '16px 16px 0 0',
+          padding: '24px', overflowY: 'auto', maxHeight: '80vh', zIndex: 99,
+          boxShadow: '0 -8px 32px rgba(0,0,0,0.15)',
+        } : {
+          width: '320px', background: 'white', borderLeft: '1px solid #E5E7EB',
+          padding: '24px', overflowY: 'auto', flexShrink: 0,
+        }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px' }}>
             <h2 style={{ margin: 0, fontSize: '16px', fontWeight: '600', color: '#111' }}>Lead Details</h2>
-            <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B7280', fontSize: '18px' }}>x</button>
+            <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#6B7280', display: 'flex' }}><X size={18} /></button>
           </div>
 
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
@@ -130,6 +148,7 @@ export default function Leads() {
             </button>
           </div>
         </div>
+        </>
       )}
     </div>
   )

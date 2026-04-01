@@ -252,15 +252,15 @@ export default function Settings() {
   }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Settings</h1>
         <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6B7280' }}>Manage your clinic and account settings</p>
       </div>
 
-      <div style={{ display: 'flex', gap: '24px' }}>
+      <div className="flex-stack">
         {/* Settings sidebar */}
-        <div style={{ width: '220px', flexShrink: 0 }}>
+        <div className="settings-nav">
           <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
             {settingsTabs.map((tab, i) => {
               const Icon = tab.icon

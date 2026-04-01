@@ -34,7 +34,7 @@ export default function PatientProfile() {
   )
 
   const renderOverview = () => (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+    <div className="rg-2">
       {/* Personal Info */}
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
         <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Personal Information</h3>
@@ -64,7 +64,7 @@ export default function PatientProfile() {
       {/* Balance Summary */}
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
         <h3 style={{ margin: '0 0 14px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Balance Summary</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+        <div className="rg-3">
           <div style={{ background: '#F9FAFB', padding: '14px', borderRadius: '8px', textAlign: 'center' }}>
             <p style={{ margin: '0 0 4px', fontSize: '11px', color: '#6B7280', textTransform: 'uppercase', fontWeight: '600' }}>Total Spent</p>
             <p style={{ margin: 0, fontSize: '20px', fontWeight: '700', color: '#111' }}>Rs.{totalSpent.toLocaleString()}</p>
@@ -153,7 +153,7 @@ export default function PatientProfile() {
               Sent via WhatsApp
             </div>
           )}
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <div className="tbl-wrap"><table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '380px' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid #E5E7EB' }}>
                 {['Medicine', 'Dosage', 'Frequency', 'Duration'].map(h => (
@@ -171,7 +171,7 @@ export default function PatientProfile() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </div>
       ))}
       {patient.prescriptions.length === 0 && (
@@ -215,7 +215,7 @@ export default function PatientProfile() {
   const renderBilling = () => (
     <div>
       {/* Summary cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '16px' }}>
+      <div className="rg-3" style={{ marginBottom: '16px' }}>
         <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
           <p style={{ margin: '0 0 4px', fontSize: '12px', color: '#6B7280', fontWeight: '500' }}>Total Spent</p>
           <p style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Rs.{totalSpent.toLocaleString()}</p>
@@ -231,8 +231,8 @@ export default function PatientProfile() {
       </div>
 
       {/* Bills table */}
-      <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
               {['Date', 'Type', 'Description', 'Amount', 'Points Used', 'Net Amount', 'Payment', 'Status'].map(h => (
@@ -272,7 +272,7 @@ export default function PatientProfile() {
     return (
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
         <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Before / After Photos</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+        <div className="rg-3">
           {treatmentPhotos.map((tp, i) => (
             <div key={i}>
               <p style={{ margin: '0 0 8px', fontSize: '13px', fontWeight: '600', color: '#111' }}>{tp.treatment}</p>
@@ -299,7 +299,7 @@ export default function PatientProfile() {
   const tabContent = [renderOverview, renderVisitHistory, renderPrescriptions, renderForms, renderBilling, renderPhotos]
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1400px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1400px' }}>
       {/* Back button */}
       <button onClick={() => navigate('/patients')} style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '14px', color: '#6B7280', marginBottom: '16px', padding: 0 }}>
         <ArrowLeft size={16} /> Back to Patients
@@ -307,7 +307,7 @@ export default function PatientProfile() {
 
       {/* Header card */}
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '24px', marginBottom: '20px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
             <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#111', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', fontWeight: '700', color: 'white', flexShrink: 0 }}>
               {patient.name.split(' ').map(n => n[0]).join('')}
@@ -344,7 +344,7 @@ export default function PatientProfile() {
       </div>
 
       {/* Tabs */}
-      <div style={{ display: 'flex', gap: '0', borderBottom: '2px solid #E5E7EB', marginBottom: '20px' }}>
+      <div className="tabs-scroll" style={{ borderBottom: '2px solid #E5E7EB', marginBottom: '20px' }}>
         {tabs.map((tab, i) => (
           <button
             key={tab}

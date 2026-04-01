@@ -54,7 +54,7 @@ export default function Billing() {
   const inputStyle: React.CSSProperties = { width: '100%', padding: '9px 12px', border: '1px solid #E5E7EB', borderRadius: '7px', fontSize: '14px', outline: 'none', fontFamily: 'inherit' }
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1200px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1200px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <div>
           <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Billing</h1>
@@ -66,7 +66,7 @@ export default function Billing() {
       </div>
 
       {/* Summary cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+      <div className="rg-4" style={{ marginBottom: '20px' }}>
         {[
           { label: 'Total Revenue', value: totalRevenue, color: '#111' },
           { label: 'Consultations', value: totalConsultations, color: '#1D4ED8' },
@@ -99,8 +99,8 @@ export default function Billing() {
       </div>
 
       {/* Table */}
-      <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', overflow: 'hidden' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+      <div className="tbl-wrap" style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
           <thead>
             <tr style={{ borderBottom: '1px solid #E5E7EB', background: '#F9FAFB' }}>
               {['Date', 'Patient', 'Type', 'Description', 'Amount', 'Points Used', 'Net Amount', 'Payment', 'Status'].map(h => (

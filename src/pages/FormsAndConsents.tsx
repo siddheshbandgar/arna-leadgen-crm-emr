@@ -70,7 +70,7 @@ export default function FormsAndConsents() {
 
       <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '24px' }}>
         <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Personal Information</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '24px' }}>
+        <div className="rg-2" style={{ marginBottom: '24px' }}>
           <div>
             <label style={labelStyle}>Full Name *</label>
             <input style={inputStyle} value={clientData.fullName} onChange={e => setClientData({ ...clientData, fullName: e.target.value })} placeholder="Enter full name" />
@@ -118,7 +118,7 @@ export default function FormsAndConsents() {
         </div>
 
         <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Medical History</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '24px' }}>
+        <div className="rg-2" style={{ marginBottom: '24px' }}>
           <div>
             <label style={labelStyle}>Known Allergies</label>
             <input style={inputStyle} value={clientData.allergies} onChange={e => setClientData({ ...clientData, allergies: e.target.value })} placeholder="List any allergies" />
@@ -169,7 +169,7 @@ export default function FormsAndConsents() {
             <p style={{ margin: 0, fontSize: '12px', color: '#6B7280' }}>INFORMED CONSENT FOR {treatmentType.toUpperCase()} TREATMENT</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '20px' }}>
+          <div className="rg-2" style={{ marginBottom: '20px' }}>
             <div>
               <label style={labelStyle}>Patient Name *</label>
               <input style={inputStyle} value={consentData.patientName} onChange={e => setConsentData({ ...consentData, patientName: e.target.value })} placeholder="Enter patient name" />
@@ -224,11 +224,11 @@ export default function FormsAndConsents() {
     )
   }
 
-  if (activeForm === 'ft1') return <div style={{ padding: '28px 32px' }}>{renderClientDataForm()}</div>
-  if (activeForm && activeForm !== 'ft1') return <div style={{ padding: '28px 32px' }}>{renderConsentForm()}</div>
+  if (activeForm === 'ft1') return <div className="page-wrap">{renderClientDataForm()}</div>
+  if (activeForm && activeForm !== 'ft1') return <div className="page-wrap">{renderConsentForm()}</div>
 
   return (
-    <div style={{ padding: '28px 32px', maxWidth: '1000px' }}>
+    <div className="page-wrap" style={{ maxWidth: '1000px' }}>
       <div style={{ marginBottom: '24px' }}>
         <h1 style={{ margin: 0, fontSize: '22px', fontWeight: '700', color: '#111' }}>Forms & Consents</h1>
         <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6B7280' }}>Manage clinic forms, consent documents, and patient signatures</p>
