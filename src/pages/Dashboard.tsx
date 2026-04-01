@@ -67,9 +67,9 @@ export default function Dashboard() {
         </div>
         <div style={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '10px', padding: '20px' }}>
           <h3 style={{ margin: '0 0 16px', fontSize: '15px', fontWeight: '600', color: '#111' }}>Lead Sources</h3>
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={240}>
             <PieChart>
-              <Pie data={sourceData} cx="50%" cy="50%" outerRadius={75} dataKey="value" label={({ name, value }) => `${name} ${value}%`} labelLine={false}>
+              <Pie data={sourceData} cx="50%" cy="55%" outerRadius={70} dataKey="value" label={({ name, value }) => `${name} ${value}%`} labelLine={true}>
                 {sourceData.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
               </Pie>
               <Tooltip />
